@@ -6,7 +6,6 @@ const state = {
 
 const getters = {
     posts: state => {
-        console.log('operation to fetch the posts');
         return state.posts;
     }
 };

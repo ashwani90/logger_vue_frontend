@@ -20,7 +20,7 @@ export default {
   components: {
     appNavbar: NavBar,
     appFooter: Footer,
-  }
+  },
 }
 </script>
 
