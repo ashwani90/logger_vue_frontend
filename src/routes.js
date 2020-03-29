@@ -6,6 +6,7 @@ import TaskForm from './components/tasks/taskForm';
 import Analytics from './components/pages/analytics';
 import Profile from './components/pages/profile';
 import PostDetails from './components/posts/postDetails';
+import TaskDetails from './components/tasks/taskDetails';
 
 export const routes = [
     { path: '/', component: Dashboard },
@@ -14,7 +15,9 @@ export const routes = [
     { path: '/tasks', component: Tasks },
     { path: '/add-posts', component: PostForm },
     { path: '/post', component: PostDetails },
+    { path: '/task', component: TaskDetails },
     { path: '/add-tasks', component: TaskForm },
     { path: '/settings', component: Analytics },
     { path: '/profile', component:Profile },
+
 ];
