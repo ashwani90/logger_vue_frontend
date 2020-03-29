@@ -14,13 +14,13 @@
                         <router-link to="/posts">Posts</router-link>
                     </li>
                     <li>
-                        <router-link to="/tasks">tasks</router-link>
+                        <router-link to="/tasks">Tasks</router-link>
                     </li>
                     <li>
-                        <router-link to="/tasks">Settings</router-link>
+                        <router-link to="/analytics">Analytics</router-link>
                     </li>
                     <li>
-                        <router-link to="/tasks">Profile</router-link>
+                        <router-link to="/profile">Profile</router-link>
                     </li>
                 </ul>
             </div>

@@ -3,15 +3,15 @@
     <h4>Add Post</h4>
     <form>
         <div class="input-field">
-            <input type="text" id="title" />
-            <label for="title">Post Name</label>
+            <input type="text" id="postName" v-model="postName"/>
+            <label for="postName">Post Name</label>
         </div>
         <div class="input-field">
-            <input type="text" id="details" />
+            <input type="text" id="details" v-model="details"/>
             <label for="details">Post Details</label>
         </div>
         <div class="input-field">
-        <select>
+        <select v-model="taskIdentifier">
             <option value="" disabled selected>Select Task</option>
             <option v-for="task in tasks" v-bind:key="task.taskName" :value="task.taskIdentifier">
                 {{ task.taskName }}
@@ -19,13 +19,18 @@
         </select>
         </div>
         <div class="row">
-            <div class="col s12 m6 l6">
-                <input id="from_timepicker" type="text" class="timepicker">
+            <div class="col s12 m4 l4">
+                <input id="date" type="text" class="datepicker" v-model="date">
+                <label for="date">Select Date</label>
+            </div>
+
+            <div class="col s12 m4 l4">
+                <input id="from_timepicker" type="text" class="timepicker" v-model="fromTime">
                 <label for="from_timepicker">From</label>
             </div>
 
-            <div class="col md-6 sm-12">
-            <input id="to_timepicker" type="text" class="timepicker">
+            <div class="col s12 m4 l4">
+            <input id="to_timepicker" type="text" class="timepicker" v-model="toTime">
             <label for="to_timepicker">Untill</label>
             </div>
         <div>
@@ -44,6 +49,19 @@
     import M from 'materialize-css';
 
     export default {
+        props: ['post'],
+        data() {
+            return {
+                postName: '',
+                details: '',
+                taskIdentifier: '',
+                fromTime: '',
+                toTime: '',
+                timepickerInstance: '',
+                date: '',
+                datepickerInstance: ''
+            };
+        },
         computed: {
             tasks() {
                 return this.$store.getters.tasks;
@@ -52,7 +70,29 @@
         methods: {
             addPosts(e) {
                 e.preventDefault();
-                console.log(e);
+                let postName = this.postName;
+                let details = this.details;
+                let taskIdentifier = this.taskIdentifier;
+
+                let selectedDate = this.datepickerInstance[0].date;
+
+                let startTime = selectedDate.getFullYear() + '-' + (selectedDate.getMonth()+1) + '-' +
+                    selectedDate.getDate() + ' ' + this.timepickerInstance[0].time + ':00';
+                let endTime = selectedDate.getFullYear() + '-' + (selectedDate.getMonth()+1) + '-' +
+                    selectedDate.getDate() + ' ' + this.timepickerInstance[1].time + ':00';
+
+                let timeSpentInSeconds = (endTime - startTime)/1000;
+
+                let requestData = {
+                    postName,
+                    details,
+                    taskId: taskIdentifier,
+                    timeSpent: timeSpentInSeconds,
+                    startTime,
+                    endTime
+                };
+
+                this.$store.dispatch('createPost', requestData);
             }
         },
         created() {
@@ -64,6 +104,10 @@
             M.AutoInit();
             let selectElems = document.querySelectorAll('select');
             M.FormSelect.init(selectElems);
+            var timePickerElems = document.querySelectorAll('.timepicker');
+            this.timepickerInstance = M.Timepicker.init(timePickerElems, {twelveHour: false});
+            let dateElems = document.querySelectorAll('.datepicker');
+            this.datepickerInstance = M.Datepicker.init(dateElems);
         },
 
     };

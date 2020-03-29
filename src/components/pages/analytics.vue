@@ -1,5 +1,5 @@
 <template>
     <div class="container">
-        Profile Page
+        Analytics
     </div>
 </template>
