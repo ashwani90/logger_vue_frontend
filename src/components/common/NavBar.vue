@@ -22,6 +22,7 @@
                     <li>
                         <router-link to="/profile">Profile</router-link>
                     </li>
+                    <span style="cursor: pointer;" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></span>
                 </ul>
             </div>
         </div>

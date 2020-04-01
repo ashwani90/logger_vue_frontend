@@ -1,4 +1,4 @@
-import {fetchTasks} from '../../services/apis/tasks';
+import {fetchTasks, editTask, createTask, getTask} from '../../services/apis/tasks';
 
 const state = {
     tasks: [],

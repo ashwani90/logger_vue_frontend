@@ -32,8 +32,8 @@
             appTaskForm: AppTaskForm,
         },
         computed: {
-            task() {
-                this.$store.getters.getTask(this.$props.taskId);
+            task: function() {
+                return this.$store.getters.getTask(this.$props.taskId);
             }
         },
         methods: {

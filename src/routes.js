@@ -7,6 +7,7 @@ import Analytics from './components/pages/analytics';
 import Profile from './components/pages/profile';
 import PostDetails from './components/posts/postDetails';
 import TaskDetails from './components/tasks/taskDetails';
+import TimeSlots from './components/pages/timeSlots';
 
 export const routes = [
     { path: '/', component: Dashboard },
@@ -19,5 +20,5 @@ export const routes = [
     { path: '/add-tasks', component: TaskForm },
     { path: '/settings', component: Analytics },
     { path: '/profile', component:Profile },
-
+    { path: '/time-slots', component: TimeSlots}
 ];

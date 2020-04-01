@@ -20,7 +20,7 @@
         },
         components: {
             appTaskFormButton:  TaskFormButton,
-            appTasKItem: AppTaskItem
+            appTaskItem: AppTaskItem
         },
         computed: {
             tasks() {

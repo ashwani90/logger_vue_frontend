@@ -58,7 +58,7 @@
                 };
 
                 if (this.$props.task && this.$props.task.taskIdentifier) {
-                    editTask(this.$props.taskId, payload)
+                    this.editTask(this.$props.taskId, payload)
                 }
 
                 this.$store.dispatch('addTask', payload);

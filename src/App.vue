@@ -1,6 +1,7 @@
 <template>
   <body class="grey lighten-4">
     <app-navbar></app-navbar>
+    <app-sidebar></app-sidebar>
 
     <transition name="slide" mode="out-in">
       <router-view></router-view>
@@ -14,12 +15,14 @@
 <script>
 import NavBar from './components/common/NavBar.vue';
 import Footer from './components/common/footer';
+import AppSideBar from './components/common/sidebar';
 
 export default {
   name: 'App',
   components: {
     appNavbar: NavBar,
     appFooter: Footer,
+      appSidebar: AppSideBar,
   },
 }
 </script>

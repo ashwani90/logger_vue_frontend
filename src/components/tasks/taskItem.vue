@@ -1,5 +1,5 @@
-<template>
-    <div class="col s12 m6 l3" v-for="task in tasks" :key="task.taskIdentifier">
+<template  v-for="task in tasks" :key="task.taskIdentifier">
+    <div class="col s12 m6 l3">
         <div class="card-panel blue lighten-1 white-text center">
             <span>{{task.taskName}}</span>
             <h5>{{task.totalTimeSpent}}</h5>
