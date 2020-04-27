@@ -13,7 +13,6 @@
                       <th>Posts</th>
                       <th>Task</th>
                       <th>Details</th>
-                      <th>Created At</th>
                       <th>Time Spent</th>
                       <th></th>
                     </tr>

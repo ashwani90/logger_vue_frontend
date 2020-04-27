@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const fetchPosts = async () => {
-    const data = await axios.get('http://localhost/logger_vue/posts.php');
-    return await data.data.posts;
+    const data = await axios.get('http://localhost:3000/posts');
+    return await data.data.data;
 };
 
 export const createPost = async (payload) => {
@@ -16,6 +16,6 @@ export const disablePost = async (postId) => {
 };
 
 export const getPost = async (postId) => {
-    const data = await axios.get('http://localhost:3000/posts/' + postId);
-    return await data.data.post;
+    const data = await axios.get('http://localhost:3000/posts/' + postId);console.log(data);
+    return await data.data.data;
 };

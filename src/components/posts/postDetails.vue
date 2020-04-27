@@ -23,12 +23,10 @@
 
 <script>
     import AppPostCard from '../common/simpleCard';
-    import AppPostForm from '../posts/postForm';
 
     export default {
         components: {
-            appPostCard: AppPostCard,
-            appPostForm: AppPostForm
+            appPostCard: AppPostCard
         },
         props: ['postId'],
         data () {
@@ -43,7 +41,7 @@
         },
         methods: {
             disablePost() {
-                this.$store.dispatch('disablePost', postId);
+                this.$store.dispatch('disablePost', this.$props.postId);
             },
         }
     }

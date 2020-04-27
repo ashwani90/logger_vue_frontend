@@ -41,6 +41,7 @@ const mutations = {
 const actions = {
     fetchPosts: async ({commit}) => {
         const data = await fetchPosts();
+        console.log(data);
         commit('SET_POSTS', data)
     },
     createPost: async ({commit}, requestData) => {
