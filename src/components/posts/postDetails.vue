@@ -1,14 +1,14 @@
 <template>
 
-    <div class="container">
+    <div class="container"><h2>Post Details</h2>
         <div>
             <div class="row">
                 <app-post-card :title="'Post Name'" :content="post.postName"></app-post-card>
                 <app-post-card :title="'Task Name'" :content="post.task.taskName"></app-post-card>
-                <app-post-card :title="'Time Spent'" :content="post.timespent"></app-post-card>
+                <app-post-card :title="'Time Spent'" :content="post.timeSpent"></app-post-card>
                 <app-post-card :title="'Details'" :content="post.details"></app-post-card>
             </div>
-            // TODO: Need to work on the disable the post when the switch button is clicked
+
             <div class="switch">
                 <label>
                     Disable Post
@@ -22,26 +22,28 @@
 </template>
 
 <script>
-    import AppPostCard from '../common/simpleCard';
+     import AppPostCard from '../common/simpleCard';
 
     export default {
         components: {
-            appPostCard: AppPostCard
+             appPostCard: AppPostCard
         },
-        props: ['postId'],
         data () {
             return {
 
             }
         },
+        created() {
+            this.$store.dispatch('getPost', this.$route.query.postId);
+        },
         computed: {
-            posts() {
-                return this.$store.getters.getPost(this.$props.postId);
+            post() {
+                return this.$store.getters.getPost;
             }
         },
         methods: {
             disablePost() {
-                this.$store.dispatch('disablePost', this.$props.postId);
+                //this.$store.dispatch('disablePost', this.$props.postId);
             },
         }
     }

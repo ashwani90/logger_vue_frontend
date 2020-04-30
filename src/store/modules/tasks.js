@@ -50,9 +50,9 @@ const actions = {
         const data = await createTask(payload);
         commit('TASK_CREATED', data);
     },
-    getTask: async ({commit}, postId) => {
-        const data = await getTask(postId);
-        commit('GET_TASK', data);
+    getTask: async ({commit}, taskId) => {
+        const data = await getTask(taskId);
+        commit('GET_TASK', data[0]);
     }
 };
 

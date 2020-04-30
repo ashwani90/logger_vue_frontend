@@ -16,6 +16,6 @@ export const disablePost = async (postId) => {
 };
 
 export const getPost = async (postId) => {
-    const data = await axios.get('http://localhost:3000/posts/' + postId);console.log(data);
+    const data = await axios.get('http://localhost:3000/posts/' + postId);
     return await data.data.data;
 };

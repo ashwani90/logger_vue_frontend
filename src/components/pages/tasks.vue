@@ -24,7 +24,8 @@
         },
         computed: {
             tasks() {
-                return this.$store.getters.tasks;
+                let tasks = this.$store.getters.tasks;console.log(tasks);
+                return tasks;
             }
         },
         created() {

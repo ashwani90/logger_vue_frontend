@@ -54,7 +54,7 @@ const actions = {
     },
     getPost: async ({commit}, postId) => {
         const data = await getPost(postId);
-        commit('SET_POST', data);
+        commit('SET_POST', data[0]);
     }
 };
 

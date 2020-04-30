@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 export const fetchTasks = async () => {
-   const data = await axios.get('http://localhost/logger_vue/tasks.php');
-    return await data.data.tasks;
+   const data = await axios.get('http://localhost:3000/tasks');
+    return await data.data.data;
 };
 
 export const getTask = async (taskId) => {
     const data = await axios.get('http://localhost:3000/tasks/' + taskId);
-    return await data.data.task;
+    return await data.data.data;
 };
 
 export const createTask = async (payload) => {

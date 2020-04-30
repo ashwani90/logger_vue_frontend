@@ -8,10 +8,12 @@
             <app-post-card :title="'Total Time Spent'" :content="task.totalTimeSpent"></app-post-card>
             <app-post-card :title="'Description'" :content="task.description"></app-post-card>
             <app-post-card :title="'Details'" :content="task.details"></app-post-card>
+            <div class="buttons_container" style="margin: 50px 0">
             <button class="btn-floating btn-large red" @click="setEditFlag">
                 <i class="material-icons">edit</i>
             </button>
-            <button class="btn btn-floating pink" @click="markTaskFinished">Finish</button>
+            <button class="btn pink" @click="markTaskFinished" style="float: right; margin-right: 100px;">Finish</button>
+            </div>
         </div>
         <div v-else>
             <app-task-form :task="task"></app-task-form>
@@ -20,21 +22,27 @@
 </template>
 <script>
     import AppTaskForm from '../tasks/taskForm';
+    import AppPostCard from '../common/simpleCard';
 
     export default {
-        props: ['taskId'],
         data() {
             return {
                 isEdit: false,
             }
         },
         components: {
-            appTaskForm: AppTaskForm,
+             appTaskForm: AppTaskForm,
+            appPostCard: AppPostCard
         },
         computed: {
             task: function() {
-                return this.$store.getters.getTask(this.$props.taskId);
+                let task = this.$store.getters.getTask;
+                console.log(task);
+                return task;
             }
+        },
+        created() {
+            this.$store.dispatch('getTask', this.$route.query.taskId);
         },
         methods: {
             setEditFlag () {
