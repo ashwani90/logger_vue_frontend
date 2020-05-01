@@ -1,12 +1,14 @@
 <template>
     <div class="container">
 
+        <h5 class="black-text"> Time distribution of a day in form of pie chart </h5>
+
         <div id="chartContainer" class="small" style="height: 300px; width: 100%;">
 
             <canvas id="time-chart"></canvas>
         </div>
 
-        <h5 class="black-text"> Page will serve to create time slots in a day for recurring tasks </h5>
+
 
         <app-float-button v-on:buttonClicked="addButtonClicked"></app-float-button>
 
@@ -34,15 +36,19 @@
 
 <script>
     import AppFloatButton from '../common/floatButton';
+    import {getChartData} from "../charts/timeSlotsData";
+    import Chart from 'chart.js';
+    import {fetchTimeTable} from "../../services/apis/timeTables";
+    import {convertTimeSlots} from "../../library/Timer/timer";
 
     export default {
         data: function () {
             return {
-                showAdd: false
+                showAdd: false,
             }
         },
         mounted() {
-            this.createChart('time-chart', this.planetChartData);
+
         },
         components: {
             appFloatButton: AppFloatButton
@@ -64,7 +70,17 @@
             }
         },
         created() {
+            fetchTimeTable().then((res, err) => {
+               if (err) {
+                   console.log(err);
+               }
+               //console.log(res.data.data[0].timeSlots);
+                let widthArray = convertTimeSlots(res.data.data[0].timeSlots);
+                let chartData = getChartData(widthArray);
+                this.createChart('time-chart', chartData);
 
+            });
+            this.$store.dispatch('fetchTimeTable');
         }
     }
 </script>
