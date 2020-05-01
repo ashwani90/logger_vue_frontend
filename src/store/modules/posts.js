@@ -1,4 +1,4 @@
-import {fetchPosts, createPost, disablePost, getPost} from "../../services/apis/posts";
+import {fetchPosts, disablePost, getPost} from "../../services/apis/posts";
 
 const state = {
     posts: [],
@@ -43,10 +43,6 @@ const actions = {
         const data = await fetchPosts();
         console.log(data);
         commit('SET_POSTS', data)
-    },
-    createPost: async ({commit}, requestData) => {
-        const data = await createPost(requestData);
-        commit('SET_CREATE_POST', data);
     },
     disablePost: async ({commit}, postId) => {
         const data = await disablePost(postId);

@@ -13,7 +13,7 @@
         <div class="input-field">
         <select v-model="taskIdentifier">
             <option value="" disabled selected>Select Task</option>
-            <option v-for="task in tasks" v-bind:key="task.taskName" :value="task.taskIdentifier">
+            <option v-for="task in tasks" v-bind:key="task.taskName" :value="task._id">
                 {{ task.taskName }}
             </option>
         </select>
@@ -47,6 +47,7 @@
 
 <script>
     import M from 'materialize-css';
+    import {createPost} from '../../services/apis/posts';
 
     export default {
         props: ['post'],
@@ -81,18 +82,31 @@
                 let endTime = selectedDate.getFullYear() + '-' + (selectedDate.getMonth()+1) + '-' +
                     selectedDate.getDate() + ' ' + this.timepickerInstance[1].time + ':00';
 
-                let timeSpentInSeconds = (endTime - startTime)/1000;
+                let timeSpentInSeconds = (Date.parse(endTime) - Date.parse(startTime))/(1000);
 
-                let requestData = {
-                    postName,
-                    details,
-                    taskId: taskIdentifier,
-                    timeSpent: timeSpentInSeconds,
-                    startTime,
-                    endTime
-                };
+                if (timeSpentInSeconds < 60) {
+                    this.isValid = false;
+                } else {
+                    let requestData = {
+                        postName,
+                        details,
+                        taskId: taskIdentifier,
+                        timeSpent: timeSpentInSeconds,
+                    };
 
-                this.$store.dispatch('createPost', requestData);
+                    createPost(requestData).then((res, err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        console.log(res);
+                        if (res.data.success == true) {
+                            this.$router.push('/posts')
+                        }
+
+                    });
+
+                }
+
             }
         },
         created() {

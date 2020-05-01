@@ -10,9 +10,8 @@ export const getTask = async (taskId) => {
     return await data.data.data;
 };
 
-export const createTask = async (payload) => {
-    const data = await axios.post('http://localhost:3000/tasks', payload);
-    return await data.data.task;
+export const createTask = (payload) => {
+    return axios.post('http://localhost:3000/tasks', payload);
 };
 
 export const editTask = async (taskId, payload) => {

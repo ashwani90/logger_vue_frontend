@@ -7,19 +7,19 @@
                     <!--<i class="material-icons">menu</i>-->
                 <!--</a>-->
                 <ul class="right hide-on-med-and-down">
-                    <li class="active">
+                    <li :class="[currentPage.includes('dashboard') ? activeClass : '']">
                         <router-link to="/dashboard">Dashboard</router-link>
                     </li>
-                    <li>
+                    <li :class="[currentPage.includes('posts') ? activeClass : '']">
                         <router-link to="/posts">Posts</router-link>
                     </li>
-                    <li>
+                    <li :class="[currentPage.includes('tasks') ? activeClass : '']">
                         <router-link to="/tasks">Tasks</router-link>
                     </li>
-                    <li>
+                    <li :class="[currentPage.includes('analytics') ? activeClass : '']">
                         <router-link to="/analytics">Analytics</router-link>
                     </li>
-                    <li>
+                    <li :class="[currentPage.includes('profile') ? activeClass : '']">
                         <router-link to="/profile">Profile</router-link>
                     </li>
                     <span style="cursor: pointer;" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></span>
@@ -30,5 +30,18 @@
 </template>
 
 <script>
+
+    export default {
+        data() {
+            return {
+                activeClass: 'active'
+            }
+        },
+        computed: {
+            currentPage() {
+                return this.$route.path;
+            }
+        }
+    }
 
 </script>

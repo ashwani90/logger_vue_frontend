@@ -5,9 +5,8 @@ export const fetchPosts = async () => {
     return await data.data.data;
 };
 
-export const createPost = async (payload) => {
-    const data = await axios.post('http://localhost:3000/posts', payload);
-    return await data.data.success;
+export const createPost = (payload) => {
+    return axios.post('http://localhost:3000/posts', payload);
 };
 
 export const disablePost = async (postId) => {
